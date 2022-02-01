@@ -29,3 +29,41 @@ Submissions will be evaluated holistically and based on a combination of effort,
 **You may use any programming language you feel most comfortable. We recommend Python because it is the easiest to implement. You're allowed to use any library or API you want to implement this, just document which ones you used in this README file.** Try to complete this as soon as possible.
 
 Regardless if you can or cannot answer the question, provide a short explanation of how you got your solution or how you think it can be solved in your README.md file. However, we highly recommend giving the challenge a try, you just might learn something new!
+
+## My solution
+
+I started by exploring the data. First, I wanted to assess the quality of the
+dataset, so I checked how many samples are edible and how many are poisonous. I
+found that there is a 52:48 ratio of edible to poisonous samples. This was good
+because an even split between the two classes is ideal for training a model. I
+also checked for any missing data. I found that 2480 of the samples are missing
+data about their stalk root. I decided to drop the entire feature and move on.
+Lastly, I noticed that all the features are nominal or ordinal.
+
+I used logistic regression to classify the mushrooms because it is effective
+and the math behind it is not too sophisticated. To use this method, I needed to
+create numeric columns from the categorical columns. To do this, I used
+`sklearn.preprocessing.OneHotEncoder`. It turns a column of n categorical
+variables into n columns where every column in a row is 0 except for one.
+Each row can be thought of as a bitfield, although it is better understood in
+the context of linear algebra and unit vectors. I used `OneHotEncoder` for
+every feature even though some features looked ordinal to me because I wasn't
+100% sure. For example, population looks ordinal but it's hard to tell which
+order is correct. While using `OneHotEncoder`, I came across some issues which
+were fixed after reading a Medium article\[1\]. I also heavily used the
+scikit-learn documentation\[2\]. I thought about using `sklearn.decomposition`
+to reduce the dimensionality of the data, but decided against it due to time
+constraints. I started off with a 80:20 training to test split and kept
+reducing it while checking the quality of my model. In the end, a 20:80
+training to test split gave me 100% accuracy.
+
+The first draft of my code is in `exploration.ipynb` and the final, cleaned up
+draft is in `solution.py`. I would like to mention that an interesting twist to
+evaluating this model is that false-negatives are much worse than
+false-positives. That is, classifying an edible mushroom as poisonous is bad,
+but classifying a poisonous mushroom as edible is potentially deadly.
+
+### References
+
+1. <https://towardsdatascience.com/guide-to-encoding-categorical-features-using-scikit-learn-for-machine-learning-5048997a5c79>
+2. <https://scikit-learn.org/stable/user_guide.html>
