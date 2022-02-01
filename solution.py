@@ -14,8 +14,8 @@ mushrooms = pd.read_csv(
 # Drop the column with N/A values (stalk-root).
 mushrooms = mushrooms.dropna(axis=1)
 
-# Encode class. 1 for edible, 0 for poisonous.
-mushrooms_y = (mushrooms["class"] == "e").to_numpy().astype("float64")
+# Encode class. 1 for poisonous, 0 for edible.
+mushrooms_y = (mushrooms["class"] == "p").to_numpy().astype("float64")
 
 # Encode features.
 ohe = OneHotEncoder(sparse=False)
@@ -28,7 +28,7 @@ x_train, x_test, y_train, y_test = train_test_split(
     train_size=0.2,
 )
 
-# Train model and test.
+# Train and test model.
 log_model = LogisticRegression()
 log_model.fit(x_train, y_train)
 predictions = log_model.predict(x_test)

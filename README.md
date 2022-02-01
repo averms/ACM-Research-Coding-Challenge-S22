@@ -68,8 +68,8 @@ Here are the results of calling `classification_report`:
 ```
               precision    recall  f1-score   support
 
-         0.0       1.00      1.00      1.00      3139
-         1.0       1.00      1.00      1.00      3361
+         0.0       1.00      1.00      1.00      3379
+         1.0       1.00      0.99      1.00      3121
 
     accuracy                           1.00      6500
    macro avg       1.00      1.00      1.00      6500
