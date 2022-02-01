@@ -63,6 +63,19 @@ evaluating this model is that false-negatives are much worse than
 false-positives. That is, classifying an edible mushroom as poisonous is bad,
 but classifying a poisonous mushroom as edible is potentially deadly.
 
+Here are the results of calling `classification_report`:
+
+```
+              precision    recall  f1-score   support
+
+         0.0       1.00      1.00      1.00      3139
+         1.0       1.00      1.00      1.00      3361
+
+    accuracy                           1.00      6500
+   macro avg       1.00      1.00      1.00      6500
+weighted avg       1.00      1.00      1.00      6500
+```
+
 ### References
 
 1. <https://towardsdatascience.com/guide-to-encoding-categorical-features-using-scikit-learn-for-machine-learning-5048997a5c79>
